@@ -15,10 +15,8 @@ export function useUserStore() {
 
     async function editUser(userId, userData) {
         await apiEditUser(userId, userData);
-        const index = users.value.findIndex(user => user.id === userId);
-        if (index !== -1) {
-            users.value[index] = { ...users.value[index], ...userData };
-        }
+        const {id, ... updatedUser} = userData;
+        users.value = users.value.map(user => user.id === id ? { ...user, ...updatedUser } : user);
     }
 
     return {
