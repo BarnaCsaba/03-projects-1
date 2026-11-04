@@ -17,4 +17,9 @@ export async function editUser(userId, userData) {
     return response.data;
 }
 
+export async function createUser(user){
+    const response = await apiClient.post(urlFragment, user);
+    return response.data;
+}
+
 

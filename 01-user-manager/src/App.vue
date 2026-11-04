@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useUserStore } from '../store/user.js'
 import Users_table from './components/Users_table.vue'
+import createUserForm from './components/createUserForm.vue'
 
 const userStore = useUserStore()
 const error = ref(null)
@@ -19,6 +20,8 @@ onMounted(async () => {
 <template>
     <div class="container">
         <div v-if="error" class="alert alert-danger">{{ error }}</div>
+        <createUserForm />
         <Users_table />
+
     </div>
 </template>

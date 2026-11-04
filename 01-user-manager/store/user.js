@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import {createUser as apiCreateUser} from '../apis/userAPI.js';
 import { getUsers, deleteUser as apiDeleteUser, editUser as apiEditUser } from '../apis/userAPI.js';
 
 const users = ref([]);
@@ -19,10 +20,16 @@ export function useUserStore() {
         users.value = users.value.map(user => user.id === id ? { ...user, ...updatedUser } : user);
     }
 
+    async function addUser(user) {
+        const response = await apiCreateUser(user);
+        users.value = [...users.value, response];
+    }
+
     return {
         users,
         fetchUsers,
         deleteUser,
+        addUser,
         editUser
     };
 }
