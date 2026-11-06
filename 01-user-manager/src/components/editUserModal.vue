@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { useUserStore } from '../../store/user.js'
 
 const props = defineProps({
-  user: { type: Object, required: true }
+  user: { type: Object, default: null }
 })
 
 const emit = defineEmits(['close'])
