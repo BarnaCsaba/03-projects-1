@@ -5,5 +5,7 @@ import MainNavigation from './components/MainNavigation.vue'
 
 <template>
   <MainNavigation />
-  <RouterView />
+  <main>
+    <router-view/>
+  </main>
 </template>

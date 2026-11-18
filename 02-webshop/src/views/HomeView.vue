@@ -1,8 +1,10 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useGuitarStore } from '../store/guitars.js'
+import { useCartStore } from '../store/cart.js'
 
 const { guitars, fetchGuitars } = useGuitarStore()
+const { addToCart } = useCartStore()
 
 onMounted(fetchGuitars)
 </script>
@@ -19,6 +21,7 @@ onMounted(fetchGuitars)
           <strong>${{ guitar.price }}</strong> · Rating: {{ guitar.rating }}/5 ·
           {{ guitar.stock > 0 ? `${guitar.stock} in stock` : 'Out of stock' }}
         </p>
+        <button :disabled="guitar.stock <= 0" @click="addToCart(guitar)">Add to cart</button>
       </li>
     </ul>
   </main>

@@ -1,5 +1,8 @@
 <script setup>
 import { RouterLink} from 'vue-router'
+import { useCartStore } from '../store/cart.js'
+
+const { itemCount } = useCartStore()
 
 
 
@@ -16,6 +19,9 @@ import { RouterLink} from 'vue-router'
             </li>
             <li>
                 <RouterLink to="/contact">Contact</RouterLink>
+            </li>
+            <li>
+                <RouterLink to="/cart">Cart ({{ itemCount }})</RouterLink>
             </li>
         </ul>
     </nav>
