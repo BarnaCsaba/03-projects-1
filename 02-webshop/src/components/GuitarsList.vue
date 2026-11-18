@@ -1,23 +1,26 @@
-<template>
-    <div>
-        <h2>Guitars</h2>
-        <ul>
-            <li v-for="guitar in guitars" :key="guitar.id">
-                <h3>{{ guitar.name }}</h3>
-                <p>{{ guitar.description }}</p>
-                <p>${{ guitar.price.toFixed(2) }}</p>
-            </li>
-        </ul>
-    </div>
-</template>
-
 <script setup>
-import { useGuitarStore } from '../store/guitars.js'
-import { onMounted } from 'vue'
+import GuitarItem from './GuitarItem.vue'
 
-const { guitars, fetchGuitars } = useGuitarStore()
-
-onMounted(async () => {
-    await fetchGuitars()
+defineProps({
+  guitars: {
+    type: Array,
+    required: true
+  }
 })
 </script>
+
+<template>
+  <p v-if="!guitars.length">No guitars to show.</p>
+  <ul v-else class="guitar-list">
+    <GuitarItem v-for="guitar in guitars" :key="guitar.id" :guitar="guitar" />
+  </ul>
+</template>
+
+<style scoped>
+.guitar-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+</style>
