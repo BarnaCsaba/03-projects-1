@@ -1,20 +1,9 @@
 <script setup>
- //import { RouterLink, RouterView } from 'vue-router'
-import {useGuitarStore} from './store/guitars.js'
-import {onMounted} from 'vue'
- const {guitars, fetchGuitars} = useGuitarStore();
-
- onMounted(async () => {
-   await fetchGuitars();
-   console.log(guitars.value);
- })
-
+import { RouterView } from 'vue-router'
+import MainNavigation from './components/MainNavigation.vue'
 </script>
 
 <template>
-  <div></div>
+  <MainNavigation />
+  <RouterView />
 </template>
-
-<style scoped>
-
-</style>
